@@ -16,7 +16,7 @@ class MainHeader extends Component {
           </Button>
         </Left>
         <Body>
-          <Text>What the shop</Text>
+          <Text>Nova</Text>
         </Body>
         <Right />
       </Header>

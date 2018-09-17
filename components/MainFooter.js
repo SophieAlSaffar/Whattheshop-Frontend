@@ -11,11 +11,11 @@ class MainFooter extends Component {
     return (
       <Footer>
         <FooterTab>
-          <Link component={Button} to="/lol">
-            <Icon type="Octicons" name="smiley" />
+          <Link component={Button} to="/ProductList">
+            <Icon name="home" />
           </Link>
           <Link component={Button} to="/privateLul">
-            <Icon name="lock" />
+            <Icon name="cart" />
           </Link>
           <Link component={Button} to="/profile">
             <Icon name="person" />

@@ -8,13 +8,14 @@ import { Form, Item, Input, Button, Text } from "native-base";
 import authStore from "../stores/authStore";
 
 // Routing
-import { Redirect, Link } from "react-router-native";
+import { Redirect } from "react-router-native";
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
+      email: "",
       password: ""
     };
   }
@@ -30,6 +31,13 @@ class Login extends Component {
             onChangeText={username => this.setState({ username })}
           />
         </Item>
+        <Item>
+          <Input
+            placeholder="e-mail"
+            autoCapitalize="none"
+            onChangeText={email => this.setState({ email })}
+          />
+        </Item>
         <Item last>
           <Input
             placeholder="Password"
@@ -41,16 +49,17 @@ class Login extends Component {
         <Button
           full
           onPress={() => {
-            authStore.loginUser(this.state.username, this.state.password);
+            authStore.register(
+              this.state.username,
+              this.state.email,
+              this.state.password
+            );
           }}
         >
-          <Text>Login</Text>
+          <Text>Register</Text>
         </Button>
-        <Link component={Button} transparent full to="/register">
-          <Text>Don't have an account? Register.</Text>
-        </Link>
       </Form>
     );
   }
 }
-export default observer(Login);
+export default observer(Register);

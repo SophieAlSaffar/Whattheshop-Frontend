@@ -28,6 +28,7 @@ class Store {
       () => {
         this.user = null;
         setAuthToken();
+        console.log("Success");
       },
       () => {
         console.log("something went wrong with logging out");
@@ -59,6 +60,35 @@ class Store {
         );
       })
       .catch(err => console.log("something went wrong logging in"));
+  }
+
+  register(username, email, password) {
+    const userData = {
+      username: username,
+      email: email,
+      password: password
+    };
+    instance
+      .post("/api/register/", userData)
+      .then(res => res.data)
+      .then(user => {
+        const { token } = user;
+        console.log(token);
+
+        // Save token to localStorage
+        AsyncStorage.setItem("jwtToken", token).then(
+          () => {
+            // Set token to Auth header
+            setAuthToken(token);
+            // Decode token to get user data
+            const decoded = jwt_decode(token);
+            // Set current user
+            this.setCurrentUser(decoded);
+          },
+          () => console.log("something went wrong with setting jwt token")
+        );
+      })
+      .catch(err => console.log("something went wrong with register"));
   }
 
   checkForToken = () => {

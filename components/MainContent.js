@@ -7,7 +7,11 @@ import { Content } from "native-base";
 import Login from "./Login";
 import Profile from "./Profile";
 import Lol from "./Lol";
+import ProductList from "./ProductList";
 import PrivateLul from "./PrivateLul";
+import Register from "./Register";
+import ProductDetail from "./ProductDetail";
+import Cart from "./Cart";
 
 // Router
 import { Route, Switch, Redirect } from "react-router-native";
@@ -20,11 +24,17 @@ class MainContent extends Component {
     return (
       <Content>
         <Switch>
-          <Route path="/lol" component={Lol} />
+          <PrivateRoute path="/ProductList" component={ProductList} />
+          <PrivateRoute
+            path="/ProductDetail/:index"
+            component={ProductDetail}
+          />
+          <PrivateRoute path="/Cart" component={Cart} />
           <PrivateRoute path="/privateLul" component={PrivateLul} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/login" component={Login} />
-          <Redirect to="/lol" />
+          <Route path="/register" component={Register} />
+          <Redirect to="/ProductList" />
         </Switch>
       </Content>
     );
